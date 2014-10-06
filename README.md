@@ -11,4 +11,4 @@ The main power of this tool is the ability to track file changes and MD5/Sha-1-s
 Future plans
 =======
 
-Future plans are to create automated Chain of Evidence tracking ( file tracking ).
+Future plans are to create automated Chain of Evidence tracking (some more advanced file tracking ).
