@@ -8,13 +8,19 @@ import javax.swing.*;
 public class MainPaneel extends JPanel{
 
     public MainPaneel() {
-
+        setLayout(null);
         JTabbedPane tabs = new JTabbedPane();
+        tabs.setSize(MainFrame.WIDTH-8, MainFrame.HEIGHT-30);
+        tabs.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
+
+        // create tabs
         tabs.addTab("MD5", new MD5Paneel());
-
         tabs.addTab("Sha-1", new Sha1Paneel());
-
         tabs.addTab("Folder tracking", new TrackingPaneel());
+
+
+        // add
+        add(tabs);
 
     }
 }

@@ -8,10 +8,14 @@ import javax.swing.*;
  */
 public class MainFrame extends JFrame {
 
+    public static final int WIDTH = 500;
+    public static final int HEIGHT = 500;
+
     public MainFrame() {
-        setSize(500,500);
+        setSize(WIDTH,HEIGHT);
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
         add(new MainPaneel());
         setVisible(true);
     }
