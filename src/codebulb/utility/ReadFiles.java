@@ -1,5 +1,8 @@
 package codebulb.utility;
 
+import codebulb.engine.Main;
+
+import javax.swing.*;
 import java.io.File;
 
 /**
@@ -18,7 +21,13 @@ public class ReadFiles {
     }
 
     public File chooseFile() {
-        File file = new File("");
+        File file = null;
+        JFileChooser chooser = new JFileChooser();
+        int returnVal = chooser.showOpenDialog(Main.frame);
+
+        if(returnVal == JFileChooser.APPROVE_OPTION) {
+            file = chooser.getSelectedFile();
+        }
 
         return file;
     }
