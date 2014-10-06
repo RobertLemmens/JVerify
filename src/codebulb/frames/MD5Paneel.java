@@ -98,6 +98,7 @@ public class MD5Paneel extends JPanel implements ActionListener{
 
             // display md5 to user
             fileMD5.setText("md5: " + md5);
+            // test test 
         }
     }
 }
