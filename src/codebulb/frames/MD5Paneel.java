@@ -31,11 +31,11 @@ public class MD5Paneel extends JPanel implements ActionListener, MouseListener{
 
         md5 = new JTextArea();
         md5.setSize(200,20);
-        md5.setLocation(10,300);
+        md5.setLocation(150,300);
 
         md5Label = new JLabel("Paste md5 string:");
         md5Label.setSize(200,20);
-        md5Label.setLocation(10, 280);
+        md5Label.setLocation(150, 280);
         md5Label.setForeground(Color.white);
 
         fileMD5 = new JLabel("");
@@ -48,6 +48,7 @@ public class MD5Paneel extends JPanel implements ActionListener, MouseListener{
         add(md5Label);
         add(fileMD5);
 
+        // image path moet nog project relatief gemaakt worden
         ImageIcon uploadIcon = new ImageIcon("C:\\Users\\Robert\\IdeaProjects\\JVerify-1.0\\res\\images\\small65.png");
         JLabel uploadLabel = new JLabel(uploadIcon);
         uploadLabel.setSize(128,128);
