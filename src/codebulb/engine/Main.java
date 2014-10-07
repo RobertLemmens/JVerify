@@ -6,7 +6,7 @@ import codebulb.frames.MainFrame;
  * Created by Robert Lemmens on 6-10-2014.
  */
 public class Main {
-    // MASTER REPO CONFIRMED //
+
 
     public static MainFrame frame;
     public static void main(String[] args) {

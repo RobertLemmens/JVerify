@@ -6,10 +6,7 @@ import codebulb.utility.ReadFiles;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.*;
 import java.io.File;
 
 /**
@@ -19,12 +16,14 @@ import java.io.File;
 public class MD5Paneel extends JPanel implements ActionListener, MouseListener{
 
     private JButton browse;
-
+    private JPanel dropPanel;
     private JTextArea md5;
     private JLabel md5Label;
+
     private JTextArea file;
     private JLabel fileLabel;
     private JLabel fileMD5;
+    private Color bgc = new Color(50,50,50);
 
     public MD5Paneel() {
         setLayout(null);
@@ -49,13 +48,21 @@ public class MD5Paneel extends JPanel implements ActionListener, MouseListener{
         add(md5Label);
         add(fileMD5);
 
+        ImageIcon uploadIcon = new ImageIcon("C:\\Users\\Robert\\IdeaProjects\\JVerify-1.0\\res\\images\\small65.png");
+        JLabel uploadLabel = new JLabel(uploadIcon);
+        uploadLabel.setSize(128,128);
+        uploadLabel.setLocation(35,30);
 
-        JPanel myPanel = new JPanel();
-        myPanel.setSize(200,200);
-        myPanel.setLocation(150, 10);
-        myPanel.setBackground(Color.red);
-        myPanel.addMouseListener(this);
-        new FileDrop( myPanel, new FileDrop.Listener() {
+        add(uploadLabel);
+
+        dropPanel = new JPanel();
+        dropPanel.setLayout(null);
+        dropPanel.setSize(200, 200);
+        dropPanel.setLocation(150, 10);
+        dropPanel.setBackground(bgc);
+        dropPanel.addMouseListener(this);
+        dropPanel.add(uploadLabel);
+        new FileDrop( dropPanel, new FileDrop.Listener() {
              public void filesDropped( java.io.File[] files ) {
                 for(int i = 0; i < files.length; i++) {
                     System.out.println(files[i].getAbsoluteFile());
@@ -71,11 +78,14 @@ public class MD5Paneel extends JPanel implements ActionListener, MouseListener{
              // end filesDropped
         });
         // end FileDrop.Listener
-        add(myPanel);
+        add(dropPanel);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        /*
+         Browse knop bestaat niet meer! Alle interactie is over naar het drop paneel = dropPanel, zie mouselistener
+         */
         if(e.getSource().equals(browse)){
             // create and open a filechooser
             ReadFiles reader = new ReadFiles();
