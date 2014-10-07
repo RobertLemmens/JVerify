@@ -18,7 +18,7 @@ public class Hasher {
         this.file = file;
     }
 
-    public byte[] createChecksum() throws
+    private byte[] createChecksum() throws
             Exception
     {
         InputStream fis =  new FileInputStream(file);
@@ -36,7 +36,7 @@ public class Hasher {
         return complete.digest();
     }
 
-    // see this How-to for a faster way to convert
+
     // a byte array to a HEX string
     public String getMD5Checksum()  {
         byte[] b = new byte[0];
