@@ -1,5 +1,6 @@
 package codebulb.frames;
 
+import codebulb.engine.HashVerifier;
 import codebulb.engine.Hasher;
 import codebulb.utility.FileDrop;
 import codebulb.utility.ReadFiles;
@@ -17,7 +18,7 @@ public class MD5Paneel extends JPanel implements ActionListener, MouseListener{
 
     private JButton browse;
     private JPanel dropPanel;
-    private JTextArea md5;
+    private JTextArea md5Field;
     private JLabel md5Label;
 
     private JTextArea file;
@@ -29,9 +30,10 @@ public class MD5Paneel extends JPanel implements ActionListener, MouseListener{
         setLayout(null);
         setBackground(Color.DARK_GRAY);
 
-        md5 = new JTextArea();
-        md5.setSize(200,20);
-        md5.setLocation(150,300);
+        md5Field = new JTextArea();
+        md5Field.setSize(220, 20);
+        md5Field.setLocation(140, 300);
+        md5Field.setText("");
 
         md5Label = new JLabel("Paste md5 string:");
         md5Label.setSize(200,20);
@@ -44,7 +46,7 @@ public class MD5Paneel extends JPanel implements ActionListener, MouseListener{
         fileMD5.setForeground(Color.white);
 
 
-        add(md5);
+        add(md5Field);
         add(md5Label);
         add(fileMD5);
 
@@ -65,15 +67,12 @@ public class MD5Paneel extends JPanel implements ActionListener, MouseListener{
         dropPanel.add(uploadLabel);
         new FileDrop( dropPanel, new FileDrop.Listener() {
              public void filesDropped( java.io.File[] files ) {
+                 // grab files ( Multiple files may be added but hashing is not yet supported.
                 for(int i = 0; i < files.length; i++) {
-                    System.out.println(files[i].getAbsoluteFile());
-                    Hasher hasher = new Hasher(files[i]);
-
-                    // create and get md5 from hasher
-                    String md5 = hasher.getMD5Checksum();
-
-                    // display md5 to user
-                    fileMD5.setText("md5: " + md5);
+                    // create and compare (if possible) md5 sums
+                    boolean isMatch = MD5Event(files[i]);
+                    // print the result
+                    System.out.println(isMatch);
                 }
              }
              // end filesDropped
@@ -87,37 +86,40 @@ public class MD5Paneel extends JPanel implements ActionListener, MouseListener{
         /*
          Browse knop bestaat niet meer! Alle interactie is over naar het drop paneel = dropPanel, zie mouselistener
          */
-        if(e.getSource().equals(browse)){
-            // create and open a filechooser
-            ReadFiles reader = new ReadFiles();
-            File file = reader.chooseFile();
-
-            // create a hashing object from the file
-            Hasher hasher = new Hasher(file);
-            this.file.setText(file.getAbsolutePath());
-
-            // create and get md5 from hasher
-            String md5 = hasher.getMD5Checksum();
-
-            // display md5 to user
-            fileMD5.setText("md5: " + md5);
-            // test test 
-        }
+        System.out.println("ACTION");
     }
 
-    @Override
-    public void mouseClicked(MouseEvent e) {
-        ReadFiles reader = new ReadFiles();
-        File file = reader.chooseFile();
-
+    public boolean MD5Event(File file) {
         // create a hashing object from the file
         Hasher hasher = new Hasher(file);
 
         // create and get md5 from hasher
         String md5 = hasher.getMD5Checksum();
+        String inputmd5 = md5Field.getText();
 
         // display md5 to user
         fileMD5.setText("md5: " + md5);
+
+        // create verify object and compare md5. Returns true if matched
+        HashVerifier verify = new HashVerifier();
+        boolean isMatch = verify.md5Check(md5, inputmd5);
+
+        // return the result
+        return isMatch;
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        // grab a file
+        ReadFiles reader = new ReadFiles();
+        File file = reader.chooseFile();
+
+        // create and compare (if textfield is not empty) md5 sums
+        boolean isMatch = MD5Event(file);
+
+        System.out.println(isMatch);
+
+
     }
 
     @Override
