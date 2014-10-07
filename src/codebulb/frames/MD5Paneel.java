@@ -9,6 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
+import java.util.ArrayList;
 
 /**
  * Created by Robert Lemmens on 6-10-2014.
@@ -26,9 +27,16 @@ public class MD5Paneel extends JPanel implements ActionListener, MouseListener{
     private JLabel fileMD5;
     private Color bgc = new Color(50,50,50);
 
+    // Global list to save the generated MD5's / filepaths for when you drop multiple files.
+    private ArrayList<String> md5Lijst;
+    private ArrayList<String> fileLijst;
+
     public MD5Paneel() {
         setLayout(null);
         setBackground(Color.DARK_GRAY);
+
+        md5Lijst = new ArrayList<String>();
+        fileLijst = new ArrayList<String>();
 
         md5Field = new JTextArea();
         md5Field.setSize(220, 20);
@@ -74,6 +82,13 @@ public class MD5Paneel extends JPanel implements ActionListener, MouseListener{
                     // print the result
                     System.out.println(isMatch);
                 }
+                 /*
+                 OPEN EEN FRAME MET RESULTS NADAT DE LISTENER KLAAR IS MET FILES ADDEN / BEWERKEN
+                  */
+                 ResultFrame results = new ResultFrame(md5Lijst, fileLijst);
+                 /*
+
+                  */
              }
              // end filesDropped
         });
@@ -104,7 +119,12 @@ public class MD5Paneel extends JPanel implements ActionListener, MouseListener{
         HashVerifier verify = new HashVerifier();
         boolean isMatch = verify.md5Check(md5, inputmd5);
 
-        // return the result
+        // return the result en sla de generated MD5 van de file op in de lijst.
+        fileLijst.add(file.getAbsolutePath());
+        md5Lijst.add(md5);
+
+
+
         return isMatch;
     }
 
