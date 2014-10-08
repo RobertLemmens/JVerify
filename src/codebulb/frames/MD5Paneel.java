@@ -38,6 +38,7 @@ public class MD5Paneel extends JPanel implements ActionListener, MouseListener{
         md5Lijst = new ArrayList<String>();
         fileLijst = new ArrayList<String>();
 
+        // single file support only - 
         md5Field = new JTextArea();
         md5Field.setSize(220, 20);
         md5Field.setLocation(140, 300);
@@ -85,6 +86,7 @@ public class MD5Paneel extends JPanel implements ActionListener, MouseListener{
                  /*
                  OPEN EEN FRAME MET RESULTS NADAT DE LISTENER KLAAR IS MET FILES ADDEN / BEWERKEN
                   */
+                 // Pass md5list and filepaths to resultframe
                  ResultFrame results = new ResultFrame(md5Lijst, fileLijst);
                  /*
 
