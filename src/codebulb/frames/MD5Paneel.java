@@ -19,7 +19,7 @@ public class MD5Paneel extends JPanel implements ActionListener, MouseListener, 
 
     private JButton check;
     private JPanel dropPanel;
-    private JTextArea md5Field[];
+    private JTextArea md5Field;
     private JLabel md5Label;
 
     private JTextArea file;
@@ -30,8 +30,10 @@ public class MD5Paneel extends JPanel implements ActionListener, MouseListener, 
     // Global list to save the generated MD5's / filepaths for when you drop multiple files.
     private ArrayList<String> md5Lijst;
     private ArrayList<String> fileLijst;
+    private JComboBox comboBox;
 
     private int fieldCounter = 1;
+    private int selectedFile = 0;
 
     public MD5Paneel() {
         setLayout(null);
@@ -40,18 +42,17 @@ public class MD5Paneel extends JPanel implements ActionListener, MouseListener, 
         md5Lijst = new ArrayList<String>();
         fileLijst = new ArrayList<String>();
         Dimension fieldDim = new Dimension(140,240);
-        // single file support only -
-        // experimental - have to convert to arraylist sooner or later.
-        md5Field = new JTextArea[100];
-        for(int i = 0; i < 5; i++) {
-            md5Field[i] = new JTextArea();
-            md5Field[i].setSize(220, 20);
-            md5Field[i].setLocation(fieldDim.width, fieldDim.height + (40*i));
-            md5Field[i].setText("");
-            md5Field[i].addKeyListener(this);
-            add(md5Field[i]);
-            System.out.println("added " + i);
-        }
+        //
+        md5Field = new JTextArea();
+
+        md5Field = new JTextArea();
+        md5Field.setSize(220, 20);
+        md5Field.setLocation(fieldDim.width, fieldDim.height);
+        md5Field.setText("");
+        md5Field.addKeyListener(this);
+        add(md5Field);
+        System.out.println("added");
+
 
         check = new JButton("Check");
         check.setSize(100,20);
@@ -64,13 +65,14 @@ public class MD5Paneel extends JPanel implements ActionListener, MouseListener, 
         md5Label.setLocation(150, 220);
         md5Label.setForeground(Color.white);
 
-        // label showing MD5 of first file added.
-        /*
-        REMOVED
-         */
+        comboBox = new JComboBox(fileLijst.toArray());
+        comboBox.addActionListener(this);
+        comboBox.setSize(220,20);
+        comboBox.setLocation(140, 270);
 
 
 
+        add(comboBox);
         add(md5Label);
 
 
@@ -103,9 +105,14 @@ public class MD5Paneel extends JPanel implements ActionListener, MouseListener, 
                   */
                  // Pass md5list and filepaths to resultframe
                  ResultFrame results = new ResultFrame(md5Lijst, fileLijst);
-                 /*
 
+                 /*
+                   update combobox met de nieuw(e) toegevoegde items
                   */
+                 comboBox.removeAllItems();
+                 for(int i = 0; i < fileLijst.size(); i++) {
+                     comboBox.addItem(fileLijst.get(i));
+                 }
              }
              // end filesDropped
         });
@@ -115,13 +122,13 @@ public class MD5Paneel extends JPanel implements ActionListener, MouseListener, 
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        /*
-         Browse knop bestaat niet meer! Alle interactie is over naar het drop paneel = dropPanel, zie mouselistener
-         */
+
         System.out.println("ACTION");
-        for(int i = 0; i < md5Lijst.size(); i++) {
-            boolean temp = matcher(md5Lijst.get(i), md5Field[i].getText());
-            System.out.println("file " + i +": " + temp);
+        if(e.getSource().equals(check)) {
+            selectedFile = comboBox.getSelectedIndex();
+
+            boolean temp = matcher(md5Lijst.get(selectedFile), md5Field.getText());
+            System.out.println("file " + ": " + temp);
         }
     }
 
@@ -141,7 +148,7 @@ public class MD5Paneel extends JPanel implements ActionListener, MouseListener, 
     public boolean matcher(String md5, String fieldmd5) {
         // create verify object and compare md5. Returns true if matched
         HashVerifier verify = new HashVerifier();
-        String inputmd5 = md5Field[0].getText();
+        String inputmd5 = md5Field.getText();
         boolean isMatch = verify.md5Check(md5, fieldmd5);
 
         return isMatch;
