@@ -30,6 +30,7 @@ public class MD5Paneel extends JPanel implements ActionListener, MouseListener, 
     // Global list to save the generated MD5's / filepaths for when you drop multiple files.
     private ArrayList<String> md5Lijst;
     private ArrayList<String> fileLijst;
+    private ArrayList<String> fileNames;
     private JComboBox comboBox;
 
     private int fieldCounter = 1;
@@ -41,6 +42,7 @@ public class MD5Paneel extends JPanel implements ActionListener, MouseListener, 
 
         md5Lijst = new ArrayList<String>();
         fileLijst = new ArrayList<String>();
+        fileNames = new ArrayList<String>();
         Dimension fieldDim = new Dimension(140,240);
         //
         md5Field = new JTextArea();
@@ -77,7 +79,7 @@ public class MD5Paneel extends JPanel implements ActionListener, MouseListener, 
 
 
         // image path moet nog project relatief gemaakt worden
-        ImageIcon uploadIcon = new ImageIcon("C:\\Users\\Robert\\IdeaProjects\\JVerify-1.0\\res\\images\\small65.png");
+        ImageIcon uploadIcon = new ImageIcon("images/small65.png");
         JLabel uploadLabel = new JLabel(uploadIcon);
         uploadLabel.setSize(128,128);
         uploadLabel.setLocation(35,30);
@@ -110,8 +112,8 @@ public class MD5Paneel extends JPanel implements ActionListener, MouseListener, 
                    update combobox met de nieuw(e) toegevoegde items
                   */
                  comboBox.removeAllItems();
-                 for(int i = 0; i < fileLijst.size(); i++) {
-                     comboBox.addItem(fileLijst.get(i));
+                 for(int i = 0; i < fileNames.size(); i++) {
+                     comboBox.addItem(fileNames.get(i));
                  }
              }
              // end filesDropped
@@ -141,6 +143,7 @@ public class MD5Paneel extends JPanel implements ActionListener, MouseListener, 
 
         // return the result en sla de generated MD5 van de file op in de lijst.
         fileLijst.add(file.getAbsolutePath());
+        fileNames.add(file.getName());
         md5Lijst.add(md5);
 
     }

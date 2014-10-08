@@ -22,7 +22,6 @@ public class HashVerifier extends Component {
             System.out.println("Geen match");
             return false;
         }
-
     }
 
     // stuff  stuff stuff merge test
