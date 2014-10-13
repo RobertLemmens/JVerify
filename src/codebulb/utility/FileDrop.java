@@ -1,7 +1,9 @@
 package codebulb.utility;
 
 /**
+ * ============================
  * Modified by Robert Lemmens.
+ * ============================
  *
  * @author  Robert Harder
  * @author  rharder@users.sf.net

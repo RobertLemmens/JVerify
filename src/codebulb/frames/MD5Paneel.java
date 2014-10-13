@@ -127,7 +127,7 @@ public class MD5Paneel extends JPanel implements ActionListener, MouseListener, 
 
         }
     }
-
+    // hier worden de md5's van de bestanden gemaakt.
     public void MD5Event(File file) {
         // create a hashing object from the file
         Hasher hasher = new Hasher(file);
@@ -142,6 +142,7 @@ public class MD5Paneel extends JPanel implements ActionListener, MouseListener, 
 
     }
 
+    // hier worden de resultaten in een frame verwerkt en klaargezet in de combobox om vergeleken te worden
     public void createResults() {
         // Pass md5list and filepaths to resultframe
         ResultFrame results = new ResultFrame(md5Lijst, fileLijst);
@@ -159,7 +160,7 @@ public class MD5Paneel extends JPanel implements ActionListener, MouseListener, 
         // create verify object and compare md5. Returns true if matched
         HashVerifier verify = new HashVerifier();
         String inputmd5 = md5Field.getText();
-        boolean isMatch = verify.md5Check(md5, fieldmd5);
+        boolean isMatch = verify.compare(md5, fieldmd5);
 
         return isMatch;
     }
