@@ -93,9 +93,9 @@ public class MD5Paneel extends JPanel implements ActionListener, MouseListener, 
         dropPanel.setBackground(bgc);
         dropPanel.addMouseListener(this);
         dropPanel.add(uploadLabel);
-        new FileDrop( dropPanel, new FileDrop.Listener() {
+        FileDrop dropper = new FileDrop( dropPanel, new FileDrop.Listener() {
              public void filesDropped( java.io.File[] files ) {
-                 // grab files ( Multiple files may be added but hashing is not yet supported.
+                 // grab files ( Multiple files may be added)
                 for(int i = 0; i < files.length; i++) {
                     // create and compare (if possible) md5 sums
                     MD5Event(files[i]);
@@ -106,15 +106,7 @@ public class MD5Paneel extends JPanel implements ActionListener, MouseListener, 
                  OPEN EEN FRAME MET RESULTS NADAT DE LISTENER KLAAR IS MET FILES ADDEN / BEWERKEN
                   */
                  // Pass md5list and filepaths to resultframe
-                 ResultFrame results = new ResultFrame(md5Lijst, fileLijst);
-
-                 /*
-                   update combobox met de nieuw(e) toegevoegde items
-                  */
-                 comboBox.removeAllItems();
-                 for(int i = 0; i < fileNames.size(); i++) {
-                     comboBox.addItem(fileNames.get(i));
-                 }
+                 createResults();
              }
              // end filesDropped
         });
@@ -131,6 +123,8 @@ public class MD5Paneel extends JPanel implements ActionListener, MouseListener, 
 
             boolean temp = matcher(md5Lijst.get(selectedFile), md5Field.getText());
             System.out.println("file " + ": " + temp);
+        } else {
+
         }
     }
 
@@ -146,6 +140,19 @@ public class MD5Paneel extends JPanel implements ActionListener, MouseListener, 
         fileNames.add(file.getName());
         md5Lijst.add(md5);
 
+    }
+
+    public void createResults() {
+        // Pass md5list and filepaths to resultframe
+        ResultFrame results = new ResultFrame(md5Lijst, fileLijst);
+
+                 /*
+                   update combobox met de nieuw(e) toegevoegde items
+                  */
+        comboBox.removeAllItems();
+        for(int i = 0; i < fileNames.size(); i++) {
+            comboBox.addItem(fileNames.get(i));
+        }
     }
 
     public boolean matcher(String md5, String fieldmd5) {
@@ -165,6 +172,7 @@ public class MD5Paneel extends JPanel implements ActionListener, MouseListener, 
 
         // create and compare (if textfield is not empty) md5 sums
         MD5Event(file);
+        createResults();
 
 
     }
