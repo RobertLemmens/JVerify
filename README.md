@@ -1,7 +1,7 @@
 JVerify
 =======
 
-An application to create MD5 and SHA-1/256/512 hashes.
+An application to create MD5 and SHA-1/256/512 hashes and check for file integrity.
 
 Simplicity
 -------
