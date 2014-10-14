@@ -8,8 +8,12 @@ import java.util.ArrayList;
  */
 public class ResultFrame extends JFrame{
 
+    JTextArea results;
 
-    public ResultFrame(ArrayList<String> md5Lijst, ArrayList<String> fileLijst){
+    ArrayList<String> md5Lijst;
+    ArrayList<String> fileLijst;
+
+    public ResultFrame(){
         setSize(500,700);
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -17,20 +21,25 @@ public class ResultFrame extends JFrame{
         setVisible(true);
 
         JPanel paneel = new JPanel();
-        JTextArea results = new JTextArea();
+        results = new JTextArea();
         results.setSize(400,500);
         results.setEditable(false);
 
-
-
-        for(int i = 0; i < fileLijst.size(); i++) {
-            results.append(fileLijst.get(i));
-            results.append("\n");
-            results.append(md5Lijst.get(i));
-            results.append("\n\n");
-        }
         add(paneel);
         paneel.add(results);
+    }
+
+    public void updateLijst(ArrayList<String> md5Lijst, ArrayList<String> fileLijst) {
+        this.md5Lijst = md5Lijst;
+        this.fileLijst = fileLijst;
+        results.setText(null);
+        for(int i = 0; i < this.fileLijst.size(); i++) {
+            results.append(this.fileLijst.get(i));
+            System.out.println(fileLijst.get(i));
+            results.append("\n");
+            results.append(this.md5Lijst.get(i));
+            results.append("\n\n");
+        }
     }
 
 }

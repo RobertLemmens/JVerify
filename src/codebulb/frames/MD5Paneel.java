@@ -21,7 +21,7 @@ public class MD5Paneel extends JPanel implements ActionListener, MouseListener, 
     private JPanel dropPanel;
     private JTextArea md5Field;
     private JLabel md5Label;
-
+    private ResultFrame results;
     private JTextArea file;
     private JLabel fileLabel;
     private JLabel fileMD5;
@@ -107,11 +107,13 @@ public class MD5Paneel extends JPanel implements ActionListener, MouseListener, 
                   */
                  // Pass md5list and filepaths to resultframe
                  createResults();
+                 results.setVisible(true);
              }
              // end filesDropped
         });
         // end FileDrop.Listener
         add(dropPanel);
+
     }
 
     @Override
@@ -145,7 +147,9 @@ public class MD5Paneel extends JPanel implements ActionListener, MouseListener, 
     // hier worden de resultaten in een frame verwerkt en klaargezet in de combobox om vergeleken te worden
     public void createResults() {
         // Pass md5list and filepaths to resultframe
-        ResultFrame results = new ResultFrame(md5Lijst, fileLijst);
+        if(results == null)
+        results = new ResultFrame();
+        results.updateLijst(md5Lijst, fileLijst);
 
                  /*
                    update combobox met de nieuw(e) toegevoegde items
