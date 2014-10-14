@@ -12,7 +12,7 @@ public class HashVerifier extends Component {
 
     }
 
-    public boolean md5Check(String twee, String een) {
+    public boolean compare(String twee, String een) {
         System.out.println(een);
         System.out.println(twee);
         if(twee.equals(een)){
@@ -22,7 +22,6 @@ public class HashVerifier extends Component {
             System.out.println("Geen match");
             return false;
         }
-
     }
 
     // stuff  stuff stuff merge test

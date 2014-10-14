@@ -1,8 +1,16 @@
 package codebulb.utility;
 
 /**
- * Created by Robert Lemmens on 7-10-2014.
+ * ============================
+ * Modified by Robert Lemmens.
+ * ============================
+ *
+ * @author  Robert Harder
+ * @author  rharder@users.sf.net
+ * @version 1.0.1
  */
+
+
 
 import java.awt.datatransfer.DataFlavor;
 import java.io.BufferedReader;
@@ -46,9 +54,6 @@ import java.io.Reader;
  * <p><em>Original author: Robert Harder, rharder@usa.net</em></p>
  * <p>2007-09-12 Nathan Blomquist -- Linux (KDE/Gnome) support added.</p>
  *
- * @author  Robert Harder
- * @author  rharder@users.sf.net
- * @version 1.0.1
  */
 public class FileDrop
 {
@@ -915,10 +920,6 @@ public class FileDrop
          * on the {@link TransferableObject}, the {@link Fetcher}'s
          * {@link #getObject getObject()} method will be called.
          *
-         * @author Robert Harder
-         * @copyright 2001
-         * @version 1.1
-         * @since 1.1
          */
         public static interface Fetcher
         {
