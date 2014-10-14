@@ -14,15 +14,17 @@ public class ResultFrame extends JFrame{
     ArrayList<String> fileLijst;
 
     public ResultFrame(){
-        setSize(500,700);
+
+        setSize(800,700);
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setLocationRelativeTo(null);
         setResizable(false);
         setVisible(true);
 
         JPanel paneel = new JPanel();
+        paneel.setLayout(null);
         results = new JTextArea();
-        results.setSize(400,500);
+        results.setSize(800,700);
         results.setEditable(false);
 
         add(paneel);
