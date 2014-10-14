@@ -79,11 +79,11 @@ public class MD5Paneel extends JPanel implements ActionListener, MouseListener, 
 
 
         // image path moet nog project relatief gemaakt worden
-        ImageIcon uploadIcon = new ImageIcon("images/small65.png");
+        ImageIcon uploadIcon = new ImageIcon(this.getClass().getResource("../images/small65.png"));
         JLabel uploadLabel = new JLabel(uploadIcon);
         uploadLabel.setSize(128,128);
         uploadLabel.setLocation(35,30);
-
+        System.out.println(this.getClass().getResource("../images/small65.png"));
         add(uploadLabel);
 
         dropPanel = new JPanel();
