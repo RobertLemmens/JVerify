@@ -1,11 +1,14 @@
 package codebulb.frames;
 
 import codebulb.engine.FolderTracker;
+import codebulb.engine.Hasher;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.util.ArrayList;
 
 /**
  * Created by Robert Lemmens on 21-11-2014.
@@ -52,7 +55,13 @@ public class TrackingControls extends JPanel implements ActionListener{
             }
         }
         if(e.getSource().equals(checkMD5)) {
-            // doiets
+            ArrayList<File> files = tracker.getFiles();
+            for(int i = 0; i< files.size(); i++) {
+                Hasher hasher = new Hasher(files.get(i));
+                String s = hasher.getMD5Checksum();
+                System.out.println(files.get(i).toString() + " md5: " + s);
+            }
+
         }
     }
 }

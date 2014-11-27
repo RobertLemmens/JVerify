@@ -50,14 +50,14 @@ public class FolderTracker implements Runnable{
 
         while(isRunning) {
             File f = new File(rootPath);
-            paneel.add(tree, BorderLayout.WEST);
+
                 if(firstRun == 0) {
                     for(int j = 0; j < f.listFiles().length; j++) {
                         rootItems.add(f.listFiles()[j]);
                         System.out.println(f.listFiles()[j].toString());
                     }
                     tree.createTree(rootPath, getFiles());
-                    paneel.removeAll();
+                    //paneel.removeAll();
                     paneel.add(tree, BorderLayout.WEST);
                     paneel.revalidate();
                     tree.revalidate();
@@ -81,9 +81,8 @@ public class FolderTracker implements Runnable{
                         paneel.remove(tree);
                         tree.createTree(rootPath, getFiles());
 
+                        paneel.add(tree, BorderLayout.WEST);
                         paneel.revalidate();
-                        paneel.repaint();
-                        //tree.revalidate();
                     }
                 }
 
@@ -105,6 +104,7 @@ public class FolderTracker implements Runnable{
             // even stoppen.
             try {
 
+                //paneel.repaint();
                 Thread.sleep(2000);
                 firstRun = 1;
             } catch (InterruptedException e) {

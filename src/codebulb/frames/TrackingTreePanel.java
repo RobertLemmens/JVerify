@@ -24,7 +24,7 @@ public class TrackingTreePanel extends JPanel implements ActionListener {
 
 
     public TrackingTreePanel() {
-        setBackground(Color.orange);
+        //setBackground(Color.orange);
     }
 
     public void createTree(String rootFolder, ArrayList<File> files) {
