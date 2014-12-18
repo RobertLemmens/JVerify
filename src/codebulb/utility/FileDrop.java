@@ -1,6 +1,26 @@
 package codebulb.utility;
 
 /**
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
  * ============================
  * Modified by Robert Lemmens.
  * ============================
@@ -8,6 +28,17 @@ package codebulb.utility;
  * @author  Robert Harder
  * @author  rharder@users.sf.net
  * @version 1.0.1
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
  */
 
 
