@@ -14,6 +14,7 @@ public class MainFrame extends JFrame {
     public MainFrame() {
         setSize(WIDTH,HEIGHT);
         setResizable(false);
+        setTitle("JVerify Beta");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         add(new MainPaneel());

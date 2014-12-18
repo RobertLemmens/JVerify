@@ -12,6 +12,6 @@ public class Main {
     public static void main(String[] args) {
         frame  = new MainFrame();
 
-        System.out.println("swag");
+        System.out.println("Started");
     }
 }
