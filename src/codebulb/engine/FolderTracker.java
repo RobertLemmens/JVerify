@@ -78,6 +78,7 @@ public class FolderTracker implements Runnable{
                                 rootItems.add(f.listFiles()[i]);
                             }
                         }
+                        // remove de tree, en add de tree met de updates.
                         paneel.remove(tree);
                         tree.createTree(rootPath, getFiles());
 

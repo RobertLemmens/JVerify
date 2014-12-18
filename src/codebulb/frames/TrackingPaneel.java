@@ -14,6 +14,7 @@ public class TrackingPaneel extends JPanel {
     JPanel controlPanel;
     TrackingTreePanel treeView;
     FolderTracker tracker;
+    ResultPaneel resultaatPaneel;
 
     public TrackingPaneel() {
         setLayout(new BorderLayout());
@@ -25,11 +26,13 @@ public class TrackingPaneel extends JPanel {
     public void initiate() {
         treeView = new TrackingTreePanel();
         tracker = new FolderTracker(this, treeView);
+        resultaatPaneel = new ResultPaneel();
 
-
-        controlPanel = new TrackingControls(tracker);
+        controlPanel = new TrackingControls(tracker, resultaatPaneel);
 
         add(controlPanel, BorderLayout.SOUTH);
+
+        add(resultaatPaneel, BorderLayout.CENTER);
 
     }
 

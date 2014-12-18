@@ -18,14 +18,16 @@ public class TrackingControls extends JPanel implements ActionListener{
     JButton select;
     JButton checkMD5;
     FolderTracker tracker;
+    ResultPaneel resultPaneel;
 
-    public TrackingControls(FolderTracker tracker) {
+    public TrackingControls(FolderTracker tracker, ResultPaneel resultPaneel) {
         this.tracker = tracker;
+        this.resultPaneel = resultPaneel;
 
-        setBackground(Color.red);
+        setBackground(Color.darkGray);
         select = new JButton("Select folder");
         select.addActionListener(this);
-        checkMD5 = new JButton("Check md5");
+        checkMD5 = new JButton("Create md5");
         checkMD5.addActionListener(this);
 
         add(select);
@@ -54,14 +56,18 @@ public class TrackingControls extends JPanel implements ActionListener{
                 System.out.println("Geen selectie");
             }
         }
+
         if(e.getSource().equals(checkMD5)) {
             ArrayList<File> files = tracker.getFiles();
+            ArrayList<String> md5 = new ArrayList<String>();
+
             for(int i = 0; i< files.size(); i++) {
                 Hasher hasher = new Hasher(files.get(i));
                 String s = hasher.getMD5Checksum();
                 System.out.println(files.get(i).toString() + " md5: " + s);
+                md5.add(s);
             }
-
+            resultPaneel.setResultaatVeld(files, md5);
         }
     }
 }
