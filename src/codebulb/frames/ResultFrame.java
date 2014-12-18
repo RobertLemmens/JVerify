@@ -18,7 +18,7 @@ public class ResultFrame extends JFrame{
         setSize(800,700);
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setLocationRelativeTo(null);
-        setResizable(false);
+        setResizable(true);
         setVisible(true);
 
         JPanel paneel = new JPanel();

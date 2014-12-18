@@ -78,7 +78,7 @@ public class MD5Paneel extends JPanel implements ActionListener, MouseListener, 
         add(md5Label);
 
 
-        // image path moet nog project relatief gemaakt worden
+        // image path moet nog project relatief gemaakt worden, jar maken vergt nog wat moeite...
         ImageIcon uploadIcon = new ImageIcon(this.getClass().getResource("../images/small65.png"));
         JLabel uploadLabel = new JLabel(uploadIcon);
         uploadLabel.setSize(128,128);
@@ -105,7 +105,7 @@ public class MD5Paneel extends JPanel implements ActionListener, MouseListener, 
                  /*
                  OPEN EEN FRAME MET RESULTS NADAT DE LISTENER KLAAR IS MET FILES ADDEN / BEWERKEN
                   */
-                 // Pass md5list and filepaths to resultframe
+                 // Pass md5list and filepaths to resultframe (when clicked away, visibility is set false.)
                  createResults();
                  results.setVisible(true);
              }
