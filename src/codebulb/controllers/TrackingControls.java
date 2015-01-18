@@ -1,7 +1,8 @@
-package codebulb.frames;
+package codebulb.controllers;
 
 import codebulb.engine.FolderTracker;
 import codebulb.engine.Hasher;
+import codebulb.frames.ResultPaneel;
 
 import javax.swing.*;
 import java.awt.*;

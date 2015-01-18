@@ -39,6 +39,7 @@ public class TrackingTreePanel extends JPanel implements ActionListener {
         subs = null;
         root = new DefaultMutableTreeNode(rootFolder);
         subs = new DefaultMutableTreeNode[files.size()];
+
         for(int i = 0; i < subs.length; i++) {
             subs[i] = new DefaultMutableTreeNode(files.get(i).getName());
             root.add(subs[i]);
@@ -46,6 +47,7 @@ public class TrackingTreePanel extends JPanel implements ActionListener {
 
         tree = new JTree(root);
         scroll = new JScrollPane(tree);
+
         add(scroll);
     }
 

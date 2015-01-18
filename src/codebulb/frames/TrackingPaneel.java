@@ -1,9 +1,9 @@
 package codebulb.frames;
 
+import codebulb.controllers.TrackingControls;
 import codebulb.engine.FolderTracker;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 
 /**
@@ -11,10 +11,10 @@ import java.awt.*;
  */
 public class TrackingPaneel extends JPanel {
 
-    JPanel controlPanel;
-    TrackingTreePanel treeView;
-    FolderTracker tracker;
-    ResultPaneel resultaatPaneel;
+    private JPanel controlPanel;
+    private TrackingTreePanel treeView;
+    private FolderTracker tracker;
+    private ResultPaneel resultaatPaneel;
 
     public TrackingPaneel() {
         setLayout(new BorderLayout());

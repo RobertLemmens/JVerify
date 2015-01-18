@@ -49,22 +49,22 @@ public class FolderTracker implements Runnable{
     public void run() {
 
         while(isRunning) {
+
             File f = new File(rootPath);
 
+                // eerste run wordt alles geadd en niet gechecked wat er al in de folder zit
                 if(firstRun == 0) {
                     for(int j = 0; j < f.listFiles().length; j++) {
                         rootItems.add(f.listFiles()[j]);
                         System.out.println(f.listFiles()[j].toString());
                     }
                     tree.createTree(rootPath, getFiles());
-                    //paneel.removeAll();
                     paneel.add(tree, BorderLayout.WEST);
                     paneel.revalidate();
                     tree.revalidate();
                     firstRun = 1;
                 }
                 else {
-                    //System.out.println("Hoe check ik die kk files");
                     if(f.listFiles().length == rootItems.size()) {
                         System.out.println("Niets nieuws.");
                     }
