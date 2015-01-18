@@ -21,4 +21,8 @@ public class MainFrame extends JFrame {
         add(new MainPanel());
         setVisible(true);
     }
+
+    public static void main(String[] args) {
+        new MainFrame();
+    }
 }

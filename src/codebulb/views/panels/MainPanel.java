@@ -1,5 +1,7 @@
 package codebulb.views.panels;
 
+import codebulb.controllers.MainController;
+import codebulb.factories.HashedFilesFactory;
 import codebulb.views.frames.MainFrame;
 
 import javax.swing.*;
@@ -15,15 +17,23 @@ public class MainPanel extends JPanel{
     }
 
     private void createTabs() {
+        // create the hashedfiles factory
+        HashedFilesFactory hashedFilesFactory= new HashedFilesFactory();
+
+        // create the main controller
+        MainController controller = new MainController(hashedFilesFactory);
+
         // create the main tab holder
         JTabbedPane tabs = new JTabbedPane();
         tabs.setSize(MainFrame.WIDTH-8, MainFrame.HEIGHT-30);
         tabs.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
 
-        //create the individual tabs with a panel ontop of it
-        tabs.addTab("MD5", new MD5Panel());
+        //create the individual tabs with a panel on top of it
+        tabs.addTab("MD5", new MD5Panel(controller));
+        tabs.addTab("Sha", new ShaPanel(controller));
+        tabs.addTab("Tracker", new TrackingPanel(controller));
 
-
+        add(tabs);
     }
 
 }

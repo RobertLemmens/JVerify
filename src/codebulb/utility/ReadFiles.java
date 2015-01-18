@@ -1,6 +1,5 @@
-package codebulb.tempHolder.utility;
+package codebulb.utility;
 
-import codebulb.tempHolder.engine.Main;
 
 import javax.swing.*;
 import java.io.File;
@@ -23,7 +22,7 @@ public class ReadFiles {
     public File chooseFile() {
         File file = null;
         JFileChooser chooser = new JFileChooser();
-        int returnVal = chooser.showOpenDialog(Main.frame);
+        int returnVal = chooser.showOpenDialog(new JFrame());
 
         if(returnVal == JFileChooser.APPROVE_OPTION) {
             file = chooser.getSelectedFile();

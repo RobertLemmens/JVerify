@@ -1,5 +1,8 @@
 package codebulb.views.panels;
 
+import codebulb.controllers.MainController;
+
+import java.awt.*;
 import java.io.File;
 
 /**
@@ -7,12 +10,16 @@ import java.io.File;
  */
 public class MD5Panel extends SuperTabPanel {
 
-    public MD5Panel() {
+    private MainController controller;
+
+    public MD5Panel(MainController controller) {
+        this.controller = controller;
         addFileDropper();
     }
 
     @Override
     public void digestFiles(File file) {
-
+        System.out.println("digesting");
+        controller.hashingEvent().createMD5Checksum(file);
     }
 }

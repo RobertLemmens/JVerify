@@ -1,6 +1,7 @@
 package codebulb.controllers;
 
 import codebulb.factories.HashedFilesFactory;
+import codebulb.models.HashedFile;
 
 /**
  * Created by Robert on 18-1-2015.
@@ -12,14 +13,28 @@ public class MainController {
     private HashedFilesFactory hashedFilesFactory;
 
     private HashingController hashingController;
+
     private TrackingController trackingController;
 
-    public MainController() {
-        hashedFilesFactory = new HashedFilesFactory();
+    public MainController(HashedFilesFactory hashedFilesFactory) {
 
-        hashingController = new HashingController();
+       this.hashedFilesFactory = hashedFilesFactory;
+
+        // the hashingcontroller will be adding to the factory, so it will be given access.
+        hashingController = new HashingController(hashedFilesFactory);
+
         trackingController = new TrackingController();
 
+    }
+
+    // provide access to the controllers //
+
+    public TrackingController trackingEvent() {
+        return trackingController;
+    }
+
+    public HashingController hashingEvent() {
+        return hashingController;
     }
 
 }

@@ -1,5 +1,7 @@
 package codebulb.views.panels;
 
+import codebulb.controllers.MainController;
+
 import javax.swing.*;
 import java.io.File;
 
@@ -8,12 +10,15 @@ import java.io.File;
  */
 public class ShaPanel extends SuperTabPanel{
 
-    public ShaPanel(){
+    private MainController controller;
+
+    public ShaPanel(MainController controller){
+        this.controller = controller;
         addFileDropper();
     }
 
     @Override
     public void digestFiles(File file) {
-
+        controller.hashingEvent().createSha1Checksum(file);
     }
 }

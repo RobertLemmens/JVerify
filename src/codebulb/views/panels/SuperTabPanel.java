@@ -2,6 +2,7 @@ package codebulb.views.panels;
 
 import codebulb.interfaces.TabPanelInterface;
 import codebulb.utility.FileDrop;
+import codebulb.utility.ReadFiles;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,13 +20,17 @@ import java.io.File;
 
 
 
- create this class to abstract out some of the methods gained from the implements, making the panels extending this class cleaner.
+ created this class to abstract out some of the methods gained from the implements, making the panels extending this class cleaner. Also defined the droppanel in here to reduce code length
 
 
 
  */
 public abstract class SuperTabPanel extends JPanel implements TabPanelInterface, ActionListener, MouseListener, KeyListener {
 
+    public SuperTabPanel() {
+        setLayout(null);
+        setBackground(Color.darkGray);
+    }
     @Override
     public void actionPerformed(ActionEvent e) {
 
@@ -48,7 +53,13 @@ public abstract class SuperTabPanel extends JPanel implements TabPanelInterface,
 
     @Override
     public void mouseClicked(MouseEvent e) {
+        ReadFiles reader = new ReadFiles();
+        File file = reader.chooseFile();
 
+        if(file == null)
+            return;
+        else
+            digestFiles(file);
     }
 
     @Override
@@ -94,11 +105,12 @@ public abstract class SuperTabPanel extends JPanel implements TabPanelInterface,
     private JPanel dropPanel;
 
     public void addFileDropper() {
-        ImageIcon uploadIcon = new ImageIcon(this.getClass().getResource("../images/small65.png"));
+        System.out.println("adding dropper");
+        ImageIcon uploadIcon = new ImageIcon(this.getClass().getResource("../../images/small65.png"));
+        System.out.println(this.getClass().getResource("../../images/small65.png"));
         JLabel uploadLabel = new JLabel(uploadIcon);
         uploadLabel.setSize(128,128);
         uploadLabel.setLocation(35,30);
-
 
         dropPanel = new JPanel();
         dropPanel.setLayout(null);
@@ -115,6 +127,9 @@ public abstract class SuperTabPanel extends JPanel implements TabPanelInterface,
                }
            }
         });
+
+        dropPanel.setVisible(true);
+        add(dropPanel);
     }
 
 
