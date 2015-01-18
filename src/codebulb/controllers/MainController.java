@@ -1,21 +1,18 @@
 package codebulb.controllers;
 
+import codebulb.factories.HashedFilesFactory;
+
 /**
- * Created by Robert on 16-1-2015.
+ * Created by Robert on 18-1-2015.
  */
-
-// controller for the views.
-
 public class MainController {
 
+    // this controller controls the other controllers
 
+    HashedFilesFactory hashedFilesFactory;
 
-    public void getFileHashes() {
-
-    }
-
-    public void getFileNames() {
-        // test
+    public MainController() {
+        hashedFilesFactory = new HashedFilesFactory();
     }
 
 }

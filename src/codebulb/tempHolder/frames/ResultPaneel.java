@@ -1,7 +1,6 @@
-package codebulb.frames;
+package codebulb.tempHolder.frames;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 import java.io.File;
 import java.util.ArrayList;

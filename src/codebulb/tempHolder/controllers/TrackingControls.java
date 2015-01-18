@@ -1,8 +1,8 @@
-package codebulb.controllers;
+package codebulb.tempHolder.controllers;
 
-import codebulb.engine.FolderTracker;
-import codebulb.engine.Hasher;
-import codebulb.frames.ResultPaneel;
+import codebulb.tempHolder.engine.FolderTracker;
+import codebulb.tempHolder.engine.Hasher;
+import codebulb.tempHolder.frames.ResultPaneel;
 
 import javax.swing.*;
 import java.awt.*;

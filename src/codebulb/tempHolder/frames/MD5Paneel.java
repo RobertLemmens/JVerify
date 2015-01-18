@@ -1,9 +1,9 @@
-package codebulb.frames;
+package codebulb.tempHolder.frames;
 
-import codebulb.engine.HashVerifier;
-import codebulb.engine.Hasher;
+import codebulb.tempHolder.engine.HashVerifier;
+import codebulb.tempHolder.engine.Hasher;
 import codebulb.utility.FileDrop;
-import codebulb.utility.ReadFiles;
+import codebulb.tempHolder.utility.ReadFiles;
 
 import javax.swing.*;
 import java.awt.*;

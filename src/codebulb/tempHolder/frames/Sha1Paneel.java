@@ -1,6 +1,6 @@
-package codebulb.frames;
+package codebulb.tempHolder.frames;
 
-import codebulb.engine.Hasher;
+import codebulb.tempHolder.engine.Hasher;
 import codebulb.utility.FileDrop;
 
 import javax.swing.*;

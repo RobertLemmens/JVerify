@@ -1,4 +1,4 @@
-package codebulb.frames;
+package codebulb.tempHolder.frames;
 
 
 import javax.swing.*;

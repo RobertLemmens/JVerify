@@ -1,7 +1,7 @@
-package codebulb.frames;
+package codebulb.tempHolder.frames;
 
-import codebulb.controllers.TrackingControls;
-import codebulb.engine.FolderTracker;
+import codebulb.tempHolder.controllers.TrackingControls;
+import codebulb.tempHolder.engine.FolderTracker;
 
 import javax.swing.*;
 import java.awt.*;

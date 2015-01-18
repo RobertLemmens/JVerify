@@ -1,14 +1,11 @@
-package codebulb.engine;
+package codebulb.tempHolder.engine;
 
-import codebulb.frames.TrackingPaneel;
-import codebulb.frames.TrackingTreePanel;
+import codebulb.tempHolder.frames.TrackingPaneel;
+import codebulb.tempHolder.frames.TrackingTreePanel;
 
-import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * Created by Robert Lemmens on 6-10-2014.
