@@ -7,12 +7,19 @@ import codebulb.factories.HashedFilesFactory;
  */
 public class MainController {
 
-    // this controller controls the other controllers
+    // this controller controls the other controllers and directly controls the views
 
-    HashedFilesFactory hashedFilesFactory;
+    private HashedFilesFactory hashedFilesFactory;
+
+    private HashingController hashingController;
+    private TrackingController trackingController;
 
     public MainController() {
         hashedFilesFactory = new HashedFilesFactory();
+
+        hashingController = new HashingController();
+        trackingController = new TrackingController();
+
     }
 
 }
