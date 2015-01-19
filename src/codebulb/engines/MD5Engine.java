@@ -21,6 +21,7 @@ public class MD5Engine implements HashEngineInterface{
 
     @Override
     public void runHasher() {
+        result = ""; // reset the resultfield upon running the hasher
         getMD5Checksum();
     }
 

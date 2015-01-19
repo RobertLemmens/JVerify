@@ -18,11 +18,6 @@ public class MainFrame extends JFrame {
         setTitle("JVerify Beta");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-        add(new MainPanel());
         setVisible(true);
-    }
-
-    public static void main(String[] args) {
-        new MainFrame();
     }
 }

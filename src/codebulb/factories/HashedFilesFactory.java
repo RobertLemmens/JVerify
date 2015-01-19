@@ -32,9 +32,12 @@ public class HashedFilesFactory {
     }
 
     public void addMd5ToFile(String fileName, String md5) {
+        System.out.println("Setting md5");
+        System.out.println(md5);
         for(int i = 0; i < hashedFileArrayList.size(); i++) {
             if(fileName.equals(hashedFileArrayList.get(i).getFileName())) {
                 hashedFileArrayList.get(i).setMd5Hash(md5);
+                System.out.println("Md5 setted!");
             }
         }
     }
@@ -78,6 +81,10 @@ public class HashedFilesFactory {
                 return hashedFileArrayList.get(i);
         }
         return null;
+    }
+
+    public ArrayList<HashedFile> getAllHashedFiles() {
+        return hashedFileArrayList;
     }
 
 }

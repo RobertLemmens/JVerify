@@ -19,6 +19,8 @@ public class ShaPanel extends SuperTabPanel{
 
     @Override
     public void digestFiles(File file) {
+        System.out.println("digesting for sha");
         controller.hashingEvent().createSha1Checksum(file);
+        controller.updateTheNeedy();
     }
 }

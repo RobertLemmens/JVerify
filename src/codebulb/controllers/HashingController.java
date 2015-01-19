@@ -33,6 +33,7 @@ public class HashingController {
         md5Engine.runHasher();
         hashedFilesFactory.add(file);
         hashedFilesFactory.addMd5ToFile(file.getName(), md5Engine.getChecksum());
+
     }
 
     public void createSha1Checksum(File file) {
