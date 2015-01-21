@@ -31,9 +31,8 @@ public class HashingController {
     public void createMD5Checksum(File file) {
         md5Engine.setFile(file);
         md5Engine.runHasher();
-        hashedFilesFactory.add(file);
+        hashedFilesFactory.add(file); // add methode checkt zelf of dat het bestand al in de lijst zit of niet.Om duplicate files te voorkomen
         hashedFilesFactory.addMd5ToFile(file.getName(), md5Engine.getChecksum());
-
     }
 
     public void createSha1Checksum(File file) {
@@ -56,5 +55,4 @@ public class HashingController {
         hashedFilesFactory.add(file);
         hashedFilesFactory.addSha5ToFile(file.getName(), sha5Engine.getChecksum());
     }
-
 }

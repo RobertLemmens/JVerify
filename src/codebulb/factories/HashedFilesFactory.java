@@ -18,9 +18,23 @@ public class HashedFilesFactory {
 
     // passing the entire file just in case i want to do something with it later on
     public void add(File file) {
+
         HashedFile temp = new HashedFile();
         temp.setFileName(file.getName());
-        hashedFileArrayList.add(temp);
+        boolean duplicate = false;
+
+        for(int i = 0; i < hashedFileArrayList.size(); i++) {
+            if(file.getName().equals(hashedFileArrayList.get(i).getFileName())) {
+                System.out.println("File exists!");
+                duplicate = true;
+            }
+        }
+
+        if(!duplicate) {
+            hashedFileArrayList.add(temp);
+            System.out.println( "added in array");
+        }
+
     }
 
     public void remove(File file) {
