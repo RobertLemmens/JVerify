@@ -20,8 +20,9 @@ public class TrackingSouthPanel extends JPanel implements ActionListener{
     private JButton stop;
 
     private MainController controller;
+    private TrackingPanel mainPanel;
 
-    public TrackingSouthPanel(MainController controller) {
+    public TrackingSouthPanel(MainController controller, TrackingPanel mainPanel) { //todo wat doen met het mainpaneel?
         this.controller = controller;
 
         selectFolder = new JButton("Select folder");
@@ -42,7 +43,7 @@ public class TrackingSouthPanel extends JPanel implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource().equals(selectFolder)) {
-
+            //todo add item selecter.
         }
         if(e.getSource().equals(start)) {
             controller.trackingEvent().startTracker();

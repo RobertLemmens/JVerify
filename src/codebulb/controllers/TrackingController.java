@@ -21,6 +21,8 @@ public class TrackingController {
         files = new ArrayList<File>();
     }
 
+    public HashedFilesFactory hashedFilesFactory; // nieuwe voor de tracker ( hou de tracker en de ad-hoc gescheiden
+
     public void startTracker() {
         tracker = new TrackingEngine();
         tracker.start();
