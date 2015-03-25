@@ -52,6 +52,20 @@ public class MainSouthPanel extends JPanel implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         if(e.getSource().equals(check)){
             System.out.println("Checking");
+            String hash1 = "";
+            // in welk paneel zitten we?
+            if(controller.tabAction().getSelectedIndex() == 0)
+                hash1 = files.get(comboBox.getSelectedIndex()).getMd5Hash();
+            else if(controller.tabAction().getSelectedIndex() == 1)
+                hash1 = files.get(comboBox.getSelectedIndex()).getSha1Hash();
+
+            String hash2 = hashField.getText();
+            System.out.println(hash1);
+            System.out.println(hash2);
+            if(hash1.equals(hash2))
+                JOptionPane.showMessageDialog(null, "The hashes match", "Match", JOptionPane.INFORMATION_MESSAGE);
+            else
+                JOptionPane.showMessageDialog(null, "The hashes don't match", "No match", JOptionPane.WARNING_MESSAGE);
         }
     }
 }

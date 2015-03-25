@@ -38,6 +38,7 @@ public class MainController {
     private MainSouthPanel southPanel;
     private ResultFrame resultFrame;
     private ResultPanel resultPanel;
+    private JTabbedPane tabs;
 
     public static void main(String[] args) {
         new MainController();
@@ -59,7 +60,7 @@ public class MainController {
         MainPanel hoofdPaneel = new MainPanel(this);
 
         // create the main tab holder
-        JTabbedPane tabs = new JTabbedPane();
+        tabs = new JTabbedPane();
         tabs.setSize(MainFrame.WIDTH-8, MainFrame.HEIGHT-30);
         tabs.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
 
@@ -122,4 +123,7 @@ public class MainController {
         resultPanel.update();
     }
 
+    public JTabbedPane tabAction() {
+        return tabs;
+    }
 }

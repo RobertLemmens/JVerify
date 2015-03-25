@@ -14,6 +14,7 @@ import java.util.ArrayList;
 public class ResultPanel extends JPanel{
 
     private JTextArea resultaatVeld;
+    private JScrollPane scroll;
 
     private ArrayList<HashedFile> hashedFiles;
 
@@ -24,7 +25,11 @@ public class ResultPanel extends JPanel{
         this.controller = controller;
         resultaatVeld = new JTextArea();
         resultaatVeld.setEditable(false);
-        add(resultaatVeld, BorderLayout.CENTER);
+
+        scroll = new JScrollPane(resultaatVeld);
+
+
+        add(scroll, BorderLayout.CENTER);
 
         hashedFiles = controller.getFiles();
     }
@@ -39,6 +44,7 @@ public class ResultPanel extends JPanel{
         }
 
         resultaatVeld.setText(s);
+
 
     }
 
