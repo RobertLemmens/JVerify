@@ -40,6 +40,8 @@ public class MainController {
     private ResultPanel resultPanel;
     private JTabbedPane tabs;
 
+    private TrackingPanel trackingPanel;
+
     public static void main(String[] args) {
         new MainController();
     }
@@ -51,23 +53,25 @@ public class MainController {
         // the hashingcontroller will be adding to the factory, so it will be given access.
         hashingController = new HashingController(hashedFilesFactory);
 
-        trackingController = new TrackingController();
+        trackingController = new TrackingController(this);
 
         // create the hashedfiles factory
-        HashedFilesFactory hashedFilesFactory= new HashedFilesFactory();
+       // HashedFilesFactory hashedFilesFactory= new HashedFilesFactory();
 
         // maak de views
         MainPanel hoofdPaneel = new MainPanel(this);
 
         // create the main tab holder
         tabs = new JTabbedPane();
-        tabs.setSize(MainFrame.WIDTH-8, MainFrame.HEIGHT-30);
+        tabs.setSize(MainFrame.WIDTH - 8, MainFrame.HEIGHT - 30);
         tabs.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
 
         //create the individual tabs with a panel on top of it
+
+        trackingPanel = new TrackingPanel(this);
         tabs.addTab("MD5", new MD5Panel(this));
         tabs.addTab("Sha", new ShaPanel(this));
-        tabs.addTab("Tracker", new TrackingPanel(this));
+        tabs.addTab("Tracker", trackingPanel);
 
         //create the southern control panel
         southPanel = new MainSouthPanel(this);
@@ -121,6 +125,11 @@ public class MainController {
     public void updateTheNeedy() {
         southPanel.updateList();
         resultPanel.update();
+
+    }
+
+    public void updateTheNeedy(File f) {
+        trackingPanel.update(f);
     }
 
     public JTabbedPane tabAction() {

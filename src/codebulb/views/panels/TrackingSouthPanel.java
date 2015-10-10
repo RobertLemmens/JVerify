@@ -43,7 +43,7 @@ public class TrackingSouthPanel extends JPanel implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource().equals(selectFolder)) {
-            //todo add item selecter.
+            controller.trackingEvent().getFolder();
         }
         if(e.getSource().equals(start)) {
             controller.trackingEvent().startTracker();

@@ -2,9 +2,11 @@ package codebulb.controllers;
 
 import codebulb.engines.TrackingEngine;
 import codebulb.factories.HashedFilesFactory;
+import codebulb.utility.SelectFiles;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashSet;
 
 /**
  * Created by Robert on 18-1-2015.
@@ -13,18 +15,26 @@ import java.util.ArrayList;
 
 public class TrackingController {
 
-    private ArrayList<File> files;
-
+    private HashSet<File> files;
     private TrackingEngine tracker;
+    private static SelectFiles selectFiles;
+    private String folderToTrack = "";
 
-    public TrackingController() {
-        files = new ArrayList<File>();
+    private MainController controller;
+
+    public TrackingController(MainController controller) {
+        files = new HashSet<File>();
+
+        selectFiles = new SelectFiles();
+
+        this.controller = controller;
+
     }
 
     public HashedFilesFactory hashedFilesFactory; // nieuwe voor de tracker ( hou de tracker en de ad-hoc gescheiden
 
     public void startTracker() {
-        tracker = new TrackingEngine();
+        tracker = new TrackingEngine(folderToTrack, this);
         tracker.start();
     }
 
@@ -33,12 +43,30 @@ public class TrackingController {
         tracker = null;
     }
 
-    public void updateTreeView() {
+    public String getFolder() {
 
+        File tempFile = selectFiles.getFile();
+        if (tempFile == null) {
+            System.out.println("No file selected / selection cancelled");
+            return "stop";
+        } else {
+            System.out.println("Selected folder: " + tempFile.getAbsolutePath());
+            System.out.println("We good boys");
+            folderToTrack = tempFile.getAbsolutePath();
+        }
+        return tempFile.getAbsolutePath();
     }
 
-    public ArrayList<File> getFiles() {
+    public void updateTreeView(File f) {
+        controller.updateTheNeedy(f);
+    }
+
+    public HashSet<File> getFiles() {
         return files;
+    }
+
+    public void addToFiles(File f) {
+        files.add(f);
     }
 
 }

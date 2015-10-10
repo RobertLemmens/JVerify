@@ -29,7 +29,7 @@ public class Sha1Engine implements HashEngineInterface{
     public String getChecksum() {
         return result;
     }
- 
+
     private byte[] createChecksum() {
 
         try {
