@@ -42,12 +42,14 @@ public class MainController {
 
     private TrackingPanel trackingPanel;
 
+    private ArrayList<Integer> filesInTracker;
+
     public static void main(String[] args) {
         new MainController();
     }
 
     public MainController() {
-
+        filesInTracker = new ArrayList<>();
         hashedFilesFactory = new HashedFilesFactory();
 
         // the hashingcontroller will be adding to the factory, so it will be given access.
@@ -134,5 +136,13 @@ public class MainController {
 
     public JTabbedPane tabAction() {
         return tabs;
+    }
+
+    public void addToTrackedFiles(int i){
+        filesInTracker.add(i);
+    }
+
+    public ArrayList<Integer> getTrackedFileIDs(){
+        return filesInTracker;
     }
 }

@@ -19,12 +19,13 @@ public class TrackingController {
     private TrackingEngine tracker;
     private static SelectFiles selectFiles;
     private String folderToTrack = "";
+    private ArrayList<Integer> uniekIDLijst;
 
     private MainController controller;
 
     public TrackingController(MainController controller) {
         files = new HashSet<File>();
-
+        uniekIDLijst = new ArrayList<>();
         selectFiles = new SelectFiles();
 
         this.controller = controller;
@@ -41,6 +42,12 @@ public class TrackingController {
     public void stopTracker() {
         tracker.stop();
         tracker = null;
+    }
+
+    public void hashFile(File file, boolean x){
+        controller.hashingEvent().createMD5Checksum(file, x);
+        controller.hashingEvent().createSha1Checksum(file, x);
+        controller.updateTheNeedy();
     }
 
     public String getFolder() {
@@ -67,6 +74,10 @@ public class TrackingController {
 
     public void addToFiles(File f) {
         files.add(f);
+    }
+
+    public void addToUniekIdLijst(int i){
+        controller.addToTrackedFiles(i);
     }
 
 }

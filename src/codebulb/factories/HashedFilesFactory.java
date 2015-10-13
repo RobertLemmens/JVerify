@@ -20,6 +20,29 @@ public class HashedFilesFactory {
     public void add(File file) {
 
         HashedFile temp = new HashedFile();
+
+        temp.setFileName(file.getName());
+        boolean duplicate = false;
+
+        for(int i = 0; i < hashedFileArrayList.size(); i++) {
+            if(file.getName().equals(hashedFileArrayList.get(i).getFileName())) {
+                System.out.println("File exists!");
+                duplicate = true;
+            }
+        }
+
+        if(!duplicate) {
+            hashedFileArrayList.add(temp);
+            System.out.println( "added in array");
+        }
+
+    }
+
+
+    public void add(File file, boolean x) {
+
+        HashedFile temp = new HashedFile();
+        temp.setTracked(x);
         temp.setFileName(file.getName());
         boolean duplicate = false;
 

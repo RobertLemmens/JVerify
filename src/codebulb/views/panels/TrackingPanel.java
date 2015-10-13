@@ -13,10 +13,7 @@ public class TrackingPanel extends SuperTabPanel{
 
     private MainController controller;
 
-    private JSplitPane splitter;
-    private TrackingTreePanel treePanel;
     private ResultPanel resultPanel;
-
 
     public TrackingPanel(MainController controller) {
 
@@ -29,15 +26,9 @@ public class TrackingPanel extends SuperTabPanel{
     }
 
     public void createSplits() {
-
-        treePanel = new TrackingTreePanel(controller);
-
         resultPanel = new ResultPanel(controller);
-        
-        splitter = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, treePanel, resultPanel); //todo ON UPDATE, ROEP resultPanel.UPDATE() aan! Check voor update in?
-
-        add(splitter, BorderLayout.CENTER);
-
+        resultPanel.setMyLocation(1);
+        add(resultPanel);
     }
 
     public void update(File f) { //todo update treepanel + resultpanel?
@@ -45,8 +36,6 @@ public class TrackingPanel extends SuperTabPanel{
 
         System.out.println("Trackingpanel recieved an update!");
 
-        treePanel.addNodes(f);
-        treePanel.refreshTree();
         repaint();
     }
 

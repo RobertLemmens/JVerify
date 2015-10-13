@@ -1,6 +1,7 @@
 package codebulb.engines;
 
 import codebulb.controllers.TrackingController;
+import codebulb.models.HashedFile;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -65,6 +66,7 @@ public class TrackingEngine implements Runnable{
         while(isRunning) {
             //System.out.println("Threading like a bosssssss");
             fileSearcher();
+
             try {
                 Thread.sleep(1000);
             } catch(Exception e) {
@@ -82,15 +84,17 @@ public class TrackingEngine implements Runnable{
             if(f.isFile()) {
 
                 trackingController.addToFiles(f);
+
                 if(trackingController.getFiles().size() > currentSize) {
                     System.out.println("A file was added.");
                     currentSize = trackingController.getFiles().size();
                     System.out.println("Size: " + currentSize);
-
+                    trackingController.hashFile(f, true);
+                    trackingController.addToUniekIdLijst(HashedFile.hashCounter);
                     trackingController.updateTreeView(f);
                 }
 
-                //System.out.println("Elements in set: " + trackingController.getFiles().size());
+                System.out.println("Elements in set: " + trackingController.getFiles().size());
 
 
             }
