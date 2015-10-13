@@ -5,7 +5,7 @@ package codebulb.models;
  */
 public class HashedFile {
 
-    private static int hashCounter = 0;
+    public static int hashCounter = 0;
 
     private int uniekID;
 
@@ -15,11 +15,21 @@ public class HashedFile {
     private String sha2Hash;
     private String sha5Hash;
 
+    private boolean tracked = false;
+
     public HashedFile() {
         hashCounter++; // start at 1 for the object counter
 
         uniekID = hashCounter; // give this object the current count number to uniquely identify it.
 
+    }
+
+    public void setTracked(boolean tracked){
+        this.tracked = tracked;
+    }
+
+    public boolean amITracked(){
+        return tracked;
     }
 
     public int getUniekID() {
