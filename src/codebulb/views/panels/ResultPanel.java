@@ -53,13 +53,11 @@ public class ResultPanel extends JPanel{
         for(HashedFile hashedFile : hashedFiles){
             if(hashedFile.amITracked() && myLocation == 1){
                 trackTemp.add(hashedFile);
-            }
-        }
-        for(HashedFile hashedFile : hashedFiles){
-            if(!hashedFile.amITracked() && myLocation == 0){
+            } else if(!hashedFile.amITracked() && myLocation == 0) {
                 trackTemp.add(hashedFile);
             }
         }
+
         String s = "";
 
         for(HashedFile file : trackTemp) {
