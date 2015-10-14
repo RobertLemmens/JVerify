@@ -47,11 +47,11 @@ public class TrackingEngine implements Runnable{
     }
 
     public synchronized void stop() {
-        isRunning = false;
-        if(isRunning == false) {
+        if(!isRunning) {
             System.out.println("Thread already stopped");
         } else {
             try {
+                isRunning = false;
                 draad.join(100);
             } catch (InterruptedException e) {
                 e.printStackTrace();
