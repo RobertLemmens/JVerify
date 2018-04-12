@@ -31,6 +31,8 @@ public class MainSouthPanel extends JPanel implements ActionListener{
         check.addActionListener(this);
 
         hashField = new JTextField();
+        hashField.setToolTipText("Enter hash here");
+        hashField.setText("Replace with hash");
         hashField.setPreferredSize(new Dimension(200,20));
         add(hashField);
         add(comboBox);
@@ -38,7 +40,6 @@ public class MainSouthPanel extends JPanel implements ActionListener{
     }
 
     public void updateList() {
-        System.out.println("updating");
         files = controller.getFiles();
         System.out.println(controller.getFiles().size()); // for debugging reasons
         comboBox.removeAllItems();
@@ -51,9 +52,8 @@ public class MainSouthPanel extends JPanel implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource().equals(check)){
-            System.out.println("Checking");
             String hash1 = "";
-            // in welk paneel zitten we?
+            // in welk paneel zitten we? Sha of Md5
             if(controller.tabAction().getSelectedIndex() == 0)
                 hash1 = files.get(comboBox.getSelectedIndex()).getMd5Hash();
             else if(controller.tabAction().getSelectedIndex() == 1)

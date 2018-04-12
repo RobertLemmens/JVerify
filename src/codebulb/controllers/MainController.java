@@ -1,5 +1,7 @@
 package codebulb.controllers;
 
+import codebulb.engines.MD5Engine;
+import codebulb.engines.Sha1Engine;
 import codebulb.factories.HashedFilesFactory;
 import codebulb.models.HashedFile;
 import codebulb.views.frames.MainFrame;
@@ -13,6 +15,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by Robert on 18-1-2015.
@@ -20,15 +25,7 @@ import java.util.ArrayList;
 public class MainController {
 
     /*
-
-
-
-
-    this controller controls the other controllers and controls / creates the views
-
-
-
-
+    this controller controls the other controllers and  the views
      */
 
     private HashedFilesFactory hashedFilesFactory;
@@ -45,7 +42,57 @@ public class MainController {
     private ArrayList<Integer> filesInTracker;
 
     public static void main(String[] args) {
-        new MainController();
+
+        if(args.length > 0) {
+            if(args.length % 2 != 0) {
+                System.out.println("Not enough arguments. Required args:\n" +
+                        "-f, --file filename\n" +
+                        "-m, --method hashing method(md5 or sha1)\n" +
+                        "-h, --hash optional hash to check against");
+            } else {
+                cmdRunner(args);
+            }
+        } else {
+            new MainController();
+        }
+
+    }
+
+    public static void cmdRunner(String[] args) {
+        Map<String, String> argMap = new HashMap<>();
+
+        for(int i = 0; i < args.length; i+=2) {
+            argMap.put(args[i], args[i+1]);
+        }
+
+        if(args.length % 2 != 0) {
+            System.out.println("Not enough arguments");
+        } else {
+            File file = new File(argMap.get("-f"));
+            String method = argMap.get("-m");
+            String result = "";
+            if(method.equals("md5")) {
+                MD5Engine engine = new MD5Engine();
+                engine.setFile(file);
+                engine.runHasher();
+                result = engine.getChecksum();
+            } else if(method.equals("sha1")) {
+                Sha1Engine engine = new Sha1Engine();
+                engine.setFile(file);
+                engine.runHasher();
+                result = engine.getChecksum();
+            }
+            System.out.println(result);
+            if(argMap.size() > 2) {
+                String hashToCheck = argMap.get("-h");
+                System.out.println(hashToCheck);
+                if(hashToCheck.equals(result)) {
+                    System.out.println("Hashes match.");
+                } else {
+                    System.out.println("Hashes don't match.");
+                }
+            }
+        }
     }
 
     public MainController() {
@@ -82,7 +129,7 @@ public class MainController {
         hoofdPaneel.add(tabs, BorderLayout.CENTER);
         hoofdPaneel.add(southPanel, BorderLayout.SOUTH);
 
-        // maak de result views
+        // maak de result view
         resultFrame = new ResultFrame();
         resultPanel = new ResultPanel(this);
         resultFrame.add(resultPanel);
@@ -127,7 +174,6 @@ public class MainController {
     public void updateTheNeedy() {
         southPanel.updateList();
         resultPanel.update();
-
     }
 
     public void updateTheNeedy(File f) {

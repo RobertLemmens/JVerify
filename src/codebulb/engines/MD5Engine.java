@@ -14,22 +14,39 @@ public class MD5Engine implements HashEngineInterface{
     private File file;
     private String result = "";
 
+    /**
+     * Set the file to hash
+     *
+     * @param file file to hash
+     */
     @Override
     public void setFile(File file) {
         this.file = file;
     }
 
+    /**
+     * Run the hashing process
+     */
     @Override
     public void runHasher() {
         result = ""; // reset the resultfield upon running the hasher
         getMD5Checksum();
     }
 
+    /**
+     * Return the result
+     *
+     * @return
+     */
     @Override
     public String getChecksum() {
         return result;
     }
 
+    /**
+     * Create MD5 checksum
+     * @return md5 checksum byte array
+     */
     private byte[] createChecksum() {
 
         try {
@@ -61,6 +78,11 @@ public class MD5Engine implements HashEngineInterface{
         return null;
     }
 
+    /**
+     * Create normal md5 string from checksum
+     *
+     * @return
+     */
     private String getMD5Checksum() {
         byte[] b = new byte[0];
 

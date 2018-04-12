@@ -1,4 +1,4 @@
-package codebulb.views.panels;
+package codebulb.views.panels.generic;
 
 import codebulb.interfaces.TabPanelInterface;
 import codebulb.utility.FileDrop;
@@ -11,21 +11,12 @@ import java.io.File;
 
 /**
  * Created by Robert on 18-1-2015.
+ *     created this class to abstract out some of the methods gained from the implements, making the panels extending this class cleaner.
+ *     Also defined the droppanel in here to reduce code length
  */
-
-
-
-
-/*
-
-
-
- created this class to abstract out some of the methods gained from the implements, making the panels extending this class cleaner. Also defined the droppanel in here to reduce code length
-
-
-
- */
-public abstract class SuperTabPanel extends JPanel implements TabPanelInterface, ActionListener, MouseListener, KeyListener {
+public abstract class SuperTabPanel
+        extends JPanel
+        implements TabPanelInterface, ActionListener, MouseListener, KeyListener {
 
     public SuperTabPanel() {
         setLayout(null);
@@ -110,12 +101,12 @@ public abstract class SuperTabPanel extends JPanel implements TabPanelInterface,
         System.out.println(this.getClass().getResource("../../images/small65.png"));
         JLabel uploadLabel = new JLabel(uploadIcon);
         uploadLabel.setSize(128,128);
-        uploadLabel.setLocation(35,30);
+        uploadLabel.setLocation(180,100);
 
         dropPanel = new JPanel();
         dropPanel.setLayout(null);
-        dropPanel.setSize(200,200);
-        dropPanel.setLocation(150,10);
+        dropPanel.setSize(500,450);
+        dropPanel.setLocation(0,0);
         dropPanel.setBackground(getBackgroundColor());
         dropPanel.addMouseListener(this);
         dropPanel.add(uploadLabel);

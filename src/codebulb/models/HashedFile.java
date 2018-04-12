@@ -2,13 +2,15 @@ package codebulb.models;
 
 /**
  * Created by Robert on 18-1-2015.
+ * A model for a hashedfile.
+ *
+ * A HashedFile contains the filename and the created hashes together with an ID(Based on hash counter).
  */
 public class HashedFile {
 
-    public static int hashCounter = 0;
+    public static int hashCounter = 0; //keep track of all hashed files
 
     private int uniekID;
-
     private String fileName;
     private String md5Hash;
     private String sha1Hash;

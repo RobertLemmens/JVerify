@@ -2,19 +2,11 @@ package codebulb.engines;
 
 import codebulb.controllers.TrackingController;
 import codebulb.models.HashedFile;
-
 import java.io.File;
-import java.util.ArrayList;
 
 /**
- * Created by Robert on 18-1-2015.
- */
-
-/*
-
- this class is in charge of tracking the folder we've selected in the TrackingSouthPanel. It will notify the trackingcontroller of any newly found files. The trackingcontroller is in charge of telling the tree
- view that there is a new file so it can update itself.
-
+ * his class is in charge of tracking the folder we've selected in the TrackingSouthPanel. It will notify the trackingcontroller of any newly found files. The trackingcontroller is in charge of telling the tree
+ *  view that there is a new file so it can update itself.
  */
 public class TrackingEngine implements Runnable{
 
@@ -28,12 +20,21 @@ public class TrackingEngine implements Runnable{
 
     private TrackingController trackingController;
 
+    /**
+     * Constructor sets the objects needed to start the thread
+     *
+     * @param folderToTrack
+     * @param trackingController
+     */
     public TrackingEngine(String folderToTrack, TrackingController trackingController) {
         this.folderToTrack = folderToTrack;
         trackedFolder = new File(folderToTrack);
         this.trackingController = trackingController;
     }
 
+    /**
+     * Start the thread. If theres no folder do nothing.
+     */
     public synchronized void start() {
 
         if(folderToTrack.equals("")) {
@@ -46,6 +47,9 @@ public class TrackingEngine implements Runnable{
         }
     }
 
+    /**
+     * Stop the thread.
+     */
     public synchronized void stop() {
         isRunning = false;
         if(isRunning == false) {
@@ -64,18 +68,25 @@ public class TrackingEngine implements Runnable{
     @Override
     public void run() {
         while(isRunning) {
-            //System.out.println("Threading like a bosssssss");
+
             fileSearcher();
 
             try {
                 Thread.sleep(1000);
             } catch(Exception e) {
+                System.out.println(e.getMessage());
                 System.out.println("Thread mocht niet slapen");
             }
         }
     }
 
-    int currentSize = 0;
+    private int currentSize = 0;
+
+    /**
+     * Method that looks for new files in the supplied directory.
+     *
+     * Gets called every thread cycle.
+     */
     public void fileSearcher() {
 
         trackedFolder = new File(folderToTrack);
@@ -95,7 +106,6 @@ public class TrackingEngine implements Runnable{
                 }
 
                 System.out.println("Elements in set: " + trackingController.getFiles().size());
-
 
             }
         }

@@ -1,15 +1,15 @@
 package codebulb.views.panels;
 
 import codebulb.controllers.MainController;
+import codebulb.views.panels.generic.SuperTabPanel;
 
-import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 
 /**
  * Created by Robert on 18-1-2015.
  */
-public class TrackingPanel extends SuperTabPanel{
+public class TrackingPanel extends SuperTabPanel {
 
     private MainController controller;
 
@@ -25,6 +25,10 @@ public class TrackingPanel extends SuperTabPanel{
         add(new TrackingSouthPanel(controller, this), BorderLayout.SOUTH);
     }
 
+    public String getResults() {
+        return resultPanel.getResultFieldText();
+    }
+
     public void createSplits() {
         resultPanel = new ResultPanel(controller);
         resultPanel.setMyLocation(1);
@@ -34,15 +38,8 @@ public class TrackingPanel extends SuperTabPanel{
     public void update(File f) { //todo update treepanel + resultpanel?
         resultPanel.update();
 
-        System.out.println("Trackingpanel recieved an update!");
-
         repaint();
     }
-
-    public void createResultPane() {
-
-    }
-
 
     @Override
     public void digestFiles(File file) {

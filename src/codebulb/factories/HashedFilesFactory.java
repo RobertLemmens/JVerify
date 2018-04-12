@@ -7,6 +7,9 @@ import java.util.ArrayList;
 
 /**
  * Created by Robert on 18-1-2015.
+ *
+ * Factory method for creating and managing all HashedFiles.
+ *
  */
 public class HashedFilesFactory {
 
@@ -16,7 +19,12 @@ public class HashedFilesFactory {
         hashedFileArrayList = new ArrayList<HashedFile>();
     }
 
-    // passing the entire file just in case i want to do something with it later on
+    /**
+     * Create a new hashedfile and
+     * Add the new hashedfile to the list if its not a duplicate
+     *
+     * @param file
+     */
     public void add(File file) {
 
         HashedFile temp = new HashedFile();
@@ -38,7 +46,12 @@ public class HashedFilesFactory {
 
     }
 
-
+    /**
+     * Create a new hashedfile and
+     * Add it to the list if its not a duplicate. Set tracked for the tracker available
+     * @param file the file that got hashed
+     * @param x indicate wether or not the file is tracked automaticly
+     */
     public void add(File file, boolean x) {
 
         HashedFile temp = new HashedFile();
@@ -60,6 +73,11 @@ public class HashedFilesFactory {
 
     }
 
+    /**
+     * Remove a file from the list
+     *
+     * @param file
+     */
     public void remove(File file) {
         for(int i = 0; i < hashedFileArrayList.size(); i++) {
             if(file.getName().equals(hashedFileArrayList.get(i).getFileName())){
@@ -68,6 +86,12 @@ public class HashedFilesFactory {
         }
     }
 
+    /**
+     * Add a md5 hash to a previously hashed file
+     *
+     * @param fileName
+     * @param md5
+     */
     public void addMd5ToFile(String fileName, String md5) {
         System.out.println("Setting md5");
         System.out.println(md5);
@@ -79,6 +103,12 @@ public class HashedFilesFactory {
         }
     }
 
+    /**
+     * Add a sha1 hash to a previously hashed file
+     *
+     * @param fileName
+     * @param sha
+     */
     public void addSha1ToFile(String fileName, String sha) {
         for(int i = 0; i < hashedFileArrayList.size(); i++) {
             if(fileName.equals(hashedFileArrayList.get(i).getFileName())) {
@@ -87,6 +117,12 @@ public class HashedFilesFactory {
         }
     }
 
+    /**
+     * Add a sha2 hash to a previously hashed file
+     *
+     * @param fileName
+     * @param sha
+     */
     public void addSha2ToFile(String fileName, String sha) {
         for(int i = 0; i < hashedFileArrayList.size(); i++) {
             if(fileName.equals(hashedFileArrayList.get(i).getFileName())) {
@@ -95,6 +131,12 @@ public class HashedFilesFactory {
         }
     }
 
+    /**
+     * Add a sha5 hash to a previously hashed file
+     *
+     * @param fileName
+     * @param sha
+     */
     public void addSha5ToFile(String fileName, String sha) {
         for(int i = 0; i < hashedFileArrayList.size(); i++) {
             if(fileName.equals(hashedFileArrayList.get(i).getFileName())) {
@@ -103,7 +145,12 @@ public class HashedFilesFactory {
         }
     }
 
-    // providing two methods, not sure which one i will be using yet.
+    /**
+     * Get a hashedfile by its filename
+     *
+     * @param fileName filename
+     * @return
+     */
     public HashedFile getHashedFile(String fileName) {
         for(int i = 0; i < hashedFileArrayList.size(); i++) {
             if(fileName.equals(hashedFileArrayList.get(i).getFileName()))
@@ -112,6 +159,12 @@ public class HashedFilesFactory {
         return null;
     }
 
+    /**
+     * Get a hashedfile by its filename (Extracted from the File object)
+     *
+     * @param file
+     * @return
+     */
     public HashedFile getHashedFile(File file) {
         for(int i = 0; i < hashedFileArrayList.size(); i++) {
             if(file.getName().equals(hashedFileArrayList.get(i).getFileName()))
@@ -120,6 +173,11 @@ public class HashedFilesFactory {
         return null;
     }
 
+    /**
+     * Return the list with hashedfiles
+     *
+     * @return
+     */
     public ArrayList<HashedFile> getAllHashedFiles() {
         return hashedFileArrayList;
     }

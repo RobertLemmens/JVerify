@@ -25,15 +25,14 @@ public class ResultPanel extends JPanel{
         this.controller = controller;
         resultaatVeld = new JTextArea();
         resultaatVeld.setEditable(false);
-
         scroll = new JScrollPane(resultaatVeld);
-
-
         add(scroll, BorderLayout.CENTER);
-
         hashedFiles = controller.getFiles();
-
         myLocation = 0;
+    }
+
+    public String getResultFieldText() {
+        return resultaatVeld.getText();
     }
 
     public void setMyLocation(int x){
@@ -42,8 +41,8 @@ public class ResultPanel extends JPanel{
 
 
 
-    ///////// Add alle files in dezelfde lijst
-    ///////// return alleen degene van toepassing. Te vinden via het unieke ID!
+    // Add alle files in dezelfde lijst
+    // return alleen degene van toepassing. Te vinden via het unieke ID
 
     public void update() {
         System.out.println("Updating resultpanel");

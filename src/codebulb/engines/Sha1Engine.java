@@ -8,28 +8,48 @@ import java.security.NoSuchAlgorithmException;
 
 /**
  * Created by Robert on 18-1-2015.
+ *
+ * This class is in charge of creating the sha1 hashes
  */
 public class Sha1Engine implements HashEngineInterface{
 
     private File file;
     private String result = "";
 
+    /**
+     * Set the file to hash
+     *
+     * @param file file to hash
+     */
     @Override
     public void setFile(File file) {
         this.file = file;
     }
 
+    /**
+     * Start hashing process
+     */
     @Override
     public void runHasher() {
         result = "";
         getSHA1Checksum();
     }
 
+    /**
+     * Return the result from hashing
+     *
+     * @return hashresult
+     */
     @Override
     public String getChecksum() {
         return result;
     }
 
+    /**
+     * Create the sha1 checksum
+     *
+     * @return byte array.
+     */
     private byte[] createChecksum() {
 
         try {
@@ -61,6 +81,11 @@ public class Sha1Engine implements HashEngineInterface{
         return null;
     }
 
+    /**
+     * Convert the checksum to normal sh1 string
+     *
+     * @return
+     */
     private String getSHA1Checksum() {
         byte[] b = new byte[0];
 

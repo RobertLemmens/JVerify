@@ -13,7 +13,7 @@ public class ResultFrame extends JFrame{
     public ResultFrame() {
         setSize(WIDTH, HEIGHT);
         setResizable(false);
-        setTitle("JVerify Beta");
+        setTitle("JVerify");
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setLocationRelativeTo(null);
         setVisible(false);

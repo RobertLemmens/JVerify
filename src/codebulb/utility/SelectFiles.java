@@ -16,10 +16,9 @@ public class SelectFiles {
         File f = null;
         JFileChooser chooser = new JFileChooser();
 
-        chooser.setDialogTitle("Choose tracking folder");
+        chooser.setDialogTitle("Open folder to track");
         chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         chooser.setAcceptAllFileFilterUsed(false);
-        //todo fix >>??
 
         if(chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION ){
            f = chooser.getSelectedFile();
